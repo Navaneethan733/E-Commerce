@@ -60,6 +60,12 @@
       object-fit: contain;
     }
 
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
     .travel-btn {
       background: var(--primary-bg);
       padding: 8px 20px;
@@ -314,6 +320,11 @@
       cursor: default;
     }
 
+    .footer-links {
+      display: flex;
+      gap: 28px;
+    }
+
     .gentle-gradient {
       background: linear-gradient(145deg, #f8fbff, #ecf2fc);
       border-radius: 24px;
@@ -351,6 +362,26 @@
         width: 100%;
         justify-content: center;
       }
+
+      .header-actions {
+        flex-direction: column;
+        gap: 8px;
+        text-align: center;
+      }
+
+      .login-footer {
+        flex-direction: column;
+        padding: 20px 15px;
+        gap: 15px;
+        align-items: center;
+        text-align: center;
+      }
+
+      .login-footer .footer-links {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
+      }
     }
 
     .chat-footer button:hover {
@@ -367,7 +398,7 @@
         <div class="logo"><img src="./images/logo.webp" alt="Stackly"></div>
       </a>
     </div>
-    <div style="display: flex; align-items: center; gap: 20px;">
+    <div class="header-actions">
         <div class="theme-toggle" id="themeToggle" title="Toggle Dark/Light Mode">
             <i class="fa-solid fa-moon"></i>
         </div>
@@ -383,7 +414,7 @@
   <div class="login-container">
     <div class="login-card">
       <div style="text-align: center; margin-bottom: 20px;">
-        <img src="./images/authentication/login-illustration.webp" alt="Login Illustration"
+        <img src="./images/logo.webp" alt="Login Illustration"
           style="width: 100%; max-width: 200px;">
       </div>
       <h1>Welcome back</h1>
@@ -431,7 +462,7 @@
 
   <div class="login-footer">
     <div>© 2025 Stackly e‑commerce — <span>loved by millions</span></div>
-    <div style="display: flex; gap: 28px;">
+    <div class="footer-links">
       <a href="./about.html">About</a>
       <a href="./contact.html" id="contactNav">Contact</a>
       <a href="./service.html">Service</a>
@@ -443,7 +474,7 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 
-    <!-- Chatbot UI -->
+    
     <div id="chatToggle" class="chat-toggle">
         <span>💬</span>
     </div>
@@ -454,7 +485,7 @@
             <span id="closeChat" class="close-chat">×</span>
         </div>
         <div id="chatBody" class="chat-body">
-            <!-- Messages go here -->
+            
         </div>
         <div class="chat-footer">
             <input type="text" id="chatInput" placeholder="Type a message...">

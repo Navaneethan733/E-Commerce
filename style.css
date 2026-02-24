@@ -49,7 +49,7 @@ body {
     overflow-x: hidden;
 }
 
-/* Theme Toggle Global Styles */
+
 .theme-toggle {
     cursor: pointer;
     font-size: 1.2rem;
@@ -65,9 +65,7 @@ body {
     background: var(--border-light);
 }
 
-.gsap-reveal-page {
-    opacity: 0;
-}
+
 
 .gsap-reveal-section {
     opacity: 0;
@@ -138,8 +136,7 @@ body {
     justify-content: flex-start;
     gap: 30px;
     border-top: 1px solid var(--border-light);
-    position: sticky;
-    top: 60px; /* Offset for top-header */
+    position: static; /* Static by default on desktop */
     z-index: 1001;
     box-shadow: 0 2px 10px var(--shadow-sm);
 }
@@ -228,7 +225,7 @@ body {
     font-weight: 700;
 }
 
-/* Dropdown Menu Styles */
+
 .nav-item-dropdown {
     position: relative;
     display: inline-block;
@@ -377,6 +374,14 @@ body {
     object-fit: cover;
 }
 
+@media (max-width: 900px) {
+    .hero {
+        flex-direction: column;
+        margin: 20px;
+    }
+}
+
+
 .categories {
     background: 
         radial-gradient(circle at 10% 20%, rgba(179, 235, 242, 0.4) 0%, transparent 40%),
@@ -462,11 +467,12 @@ body {
 }
 
 .footer-column h3 {
-    color: var(--text-gray);
-    font-size: 12px;
-    font-weight: 400;
-    margin-bottom: 12px;
+    color: var(--footer-text);
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 16px;
     text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 .footer-column ul {
@@ -873,12 +879,12 @@ font-size:14px;
         overflow-x: auto;
         scroll-snap-type: x mandatory;
         gap: 0;
-        scrollbar-width: none; /* Hide scrollbar Firefox */
-        -ms-overflow-style: none; /* Hide scrollbar IE/Edge */
+        scrollbar-width: none; 
+        -ms-overflow-style: none; 
     }
 
     .brands-wrapper::-webkit-scrollbar {
-        display: none; /* Hide scrollbar Chrome/Safari */
+        display: none; 
     }
 
     .brand-card {
@@ -909,7 +915,7 @@ font-size:14px;
     }
 }
 
-/* Responsive Design */
+
 @media (max-width: 1024px) {
     .top-header {
         padding: 10px 20px;
@@ -951,15 +957,15 @@ font-size:14px;
         display: none;
         flex-direction: column;
         position: absolute;
-        top: 80px; /* Adjusted for mobile top-header height */
+        top: 80px; 
         left: 0;
         right: 0;
-        background: #fff;
+        background: var(--secondary-bg);
         padding: 20px;
-        box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+        box-shadow: 0 10px 15px var(--shadow-md);
         z-index: 1001;
         gap: 20px;
-        border-bottom: 1px solid #eee;
+        border-bottom: 1px solid var(--border-light);
     }
 
     .nav-links.active {
@@ -1038,7 +1044,7 @@ font-size:14px;
     }
 
     .rising-card {
-        min-width: 50%; /* Show 2 cards on tablet */
+        min-width: 50%; 
     }
 
     .rising-card img {
@@ -1080,7 +1086,7 @@ font-size:14px;
 
     .product-grid {
         grid-template-columns: repeat(2, 1fr);
-        /* 2 cards per row on mobile looks better for e-commerce */
+        
         gap: 8px;
     }
 
@@ -1099,11 +1105,12 @@ font-size:14px;
     
     .search-header {
         flex-wrap: wrap;
-        top: 80px; /* Adjusted for mobile top-header height */
+        position: sticky; 
+        top: 80px; /* Sticks right below the wrapped mobile top-header */
     }
 
     .nav-links {
-        display: none; /* Already handled in 768px query, but keeping it explicit */
+        display: none; 
     }
 
     .nav-links.active {
@@ -1114,9 +1121,9 @@ font-size:14px;
         position: static;
         box-shadow: none;
         padding: 15px 20px;
-        border-top: 1px solid #eee;
+        border-top: 1px solid var(--border-light);
         margin-top: 10px;
-        background: #fff;
+        background: var(--secondary-bg);
         align-items: flex-start;
         gap: 15px;
     }
@@ -1132,9 +1139,9 @@ font-size:14px;
         padding-left: 20px;
         opacity: 1;
         visibility: visible;
-        display: none; /* Hide by default on mobile, show via active class */
+        display: none; 
         transform: none;
-        background: #f9f9f9;
+        background: var(--primary-bg);
         margin-top: 10px;
         border-radius: 0;
     }
@@ -1157,7 +1164,7 @@ font-size:14px;
     }
 
     .rising-card {
-        min-width: 100%; /* Show 1 card on mobile */
+        min-width: 100%; 
     }
 
     .rising-card img {
@@ -1172,7 +1179,7 @@ font-size:14px;
     }
 }
 
-/* 404 Page Styling */
+
 .error-page-container {
     padding: 80px 20px;
     text-align: center;
@@ -1230,7 +1237,7 @@ font-size:14px;
     }
 }
 
-/* Chatbot UI Styles */
+
 .chat-toggle {
     position: fixed;
     bottom: 30px;
@@ -1370,7 +1377,7 @@ font-size:14px;
     }
 }
 
-/* Modal Styles */
+
 .modal {
     position: fixed;
     top: 0;
@@ -1513,13 +1520,13 @@ font-size:14px;
     }
 }
 
-/* Shop Page Styles */
+
 .shop-hero {
     background: linear-gradient(135deg, #FF6500 0%, #FF8C00 100%);
     padding: 60px 0;
     text-align: center;
     color: white;
-    margin-top: 0; /* Reset margin since header is sticky and pushes naturally if not fixed */
+    margin-top: 0; 
 }
 
 .shop-hero h1 {
@@ -1684,7 +1691,7 @@ font-size:14px;
     color: #FF6500;
 }
 
-/* Mobile Adjustments for Shop */
+
 @media (max-width: 992px) {
     .shop-layout {
         grid-template-columns: 1fr;
@@ -1706,7 +1713,7 @@ font-size:14px;
         font-size: 1.8rem;
     }
 }
-/* Product Card UI Updates */
+
 .product-card-controls {
     display: flex;
     flex-direction: column;
@@ -1790,7 +1797,7 @@ font-size:14px;
     font-size: 0.9rem;
 }
 
-/* Base Responsive for controls */
+
 @media (max-width: 480px) {
     .product-card-controls {
         gap: 8px;
@@ -1802,7 +1809,7 @@ font-size:14px;
     }
 }
 
-/* Cart Page Styles */
+
 .cart-hero {
     background: linear-gradient(135deg, #2874f0 0%, #1a5abf 100%);
     padding: 60px 0;
@@ -2009,7 +2016,7 @@ font-size:14px;
     }
 }
 
-/* Dashboard Specific Styles */
+
 .dashboard-main {
     padding-top: 40px;
     padding-bottom: 80px;
@@ -2254,7 +2261,7 @@ font-size:14px;
     }
 }
 
-/* About Page Styles */
+
 .about-main {
     padding-top: 40px;
     padding-bottom: 80px;
@@ -2415,7 +2422,7 @@ font-size:14px;
 }
 
 
-/* Service Page Styles */
+
 .service-main {
     padding-top: 40px;
     padding-bottom: 80px;
@@ -2615,7 +2622,7 @@ font-size:14px;
     }
 }
 
-/* Blog Page Styles */
+
 .blog-hero {
     background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('./images/home-4/hero-7.webp');
     background-size: cover;
@@ -2848,7 +2855,7 @@ font-size:14px;
     margin-top: 5px;
 }
 
-/* Premium Button Styles */
+
 .btn-primary {
     background: var(--accent-blue);
     color: white;
@@ -2915,7 +2922,7 @@ font-size:14px;
     }
 }
 
-/* FAQ Section Styles */
+
 .faq-container {
     max-width: 800px;
     margin: 0 auto;
@@ -2977,7 +2984,7 @@ font-size:14px;
     color: var(--text-muted);
 }
 
-/* Dark Mode Overrides for FAQ */
+
 [data-theme="dark"] .faq-item {
     background: #252525;
 }
@@ -3014,14 +3021,14 @@ font-size:14px;
     border: 1px solid rgba(255, 255, 255, 0.3);
     max-width: 800px;
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-    color: var(--text-primary); /* Use primary text color for contrast in light mode */
+    color: var(--text-primary); 
 }
 
 .contact-hero h1 {
     font-size: 3rem;
     font-weight: 700;
     margin-bottom: 20px;
-    color: #212121 !important; /* Force dark color in light mode */
+    color: #212121 !important; 
 }
 
 .contact-hero p {
@@ -3029,7 +3036,7 @@ font-size:14px;
     max-width: 700px;
     margin: 0 auto;
     opacity: 0.9;
-    color: #212121 !important; /* Force dark color in light mode */
+    color: #212121 !important; 
 }
 
 .contact-section {
@@ -3191,11 +3198,11 @@ font-size:14px;
 }
 
 .contact-page .footer {
-    /* Use standard footer styling */
+    
     margin-top: 0;
 }
 
-/* Dark Mode Overrides for Contact Page */
+
 [data-theme="dark"] .contact-grid {
     background: #1a1a1a;
 }
@@ -3243,7 +3250,7 @@ font-size:14px;
     }
 }
 
-/* Enhanced Dashboard Components */
+
 .dashboard-secondary-grid {
     display: grid;
     grid-template-columns: 1.2fr 1fr;
@@ -3313,7 +3320,7 @@ font-size:14px;
     transform: scale(1.1);
 }
 
-/* Security Hub */
+
 .security-content {
     display: flex;
     flex-direction: column;
@@ -3361,7 +3368,7 @@ font-size:14px;
     color: #ff3e3e;
 }
 
-/* Addresses */
+
 .addresses-section {
     margin-top: 30px;
 }
@@ -3437,7 +3444,7 @@ font-size:14px;
     color: #ff3e3e;
 }
 
-/* Plus Membership Card */
+
 .plus-membership-card {
     margin-top: 30px;
     background: linear-gradient(135deg, #1e1e1e, #333);
@@ -3520,7 +3527,7 @@ font-size:14px;
     background: #ffb300;
 }
 
-/* Dark Mode Overrides for Dashboard Expansion */
+
 [data-theme="dark"] .address-card.active {
     background: rgba(40, 116, 240, 0.1);
     border-color: var(--accent-blue);
@@ -3535,7 +3542,7 @@ font-size:14px;
     border: 1px solid rgba(255, 193, 7, 0.2);
 }
 
-/* Dashboard Responsive */
+
 @media (max-width: 1200px) {
     .dashboard-secondary-grid {
         grid-template-columns: 1fr;
@@ -3596,7 +3603,8 @@ font-size:14px;
     .search-header {
         flex-direction: column;
         padding: 15px;
-        top: 100px; /* Adjusted offset for stacked top-header */
+        position: sticky; 
+        top: 85px; /* Adjust top gap for smaller phone screens */
     }
 
     .nav-icons {
@@ -3605,13 +3613,29 @@ font-size:14px;
         margin-right: 0;
     }
 
+    .nav-icons > a[href="./login.html"] {
+        order: 1;
+    }
+
+    .nav-icons .theme-toggle {
+        order: 2;
+        background: var(--primary-bg);
+        border: 1px solid var(--border-light);
+        padding: 6px 12px;
+        border-radius: 20px;
+    }
+
+    .nav-icons > a[href="cart.html"] {
+        order: 3;
+    }
+
     .search-box {
         width: 100%;
         max-width: 100%;
     }
 
     .dashboard-main {
-        padding: 160px 10px 100px; /* Adjusted top padding for stacked sticky headers + bottom padding for chatbot */
+        padding: 160px 10px 100px; 
     }
 
     .security-item {
@@ -3653,7 +3677,7 @@ font-size:14px;
     }
 }
 
-/* Flash Sale Section */
+
 .flash-sale {
     background: var(--secondary-bg);
     padding: 40px 0;
@@ -3721,7 +3745,7 @@ font-size:14px;
     100% { transform: scale(1); }
 }
 
-/* Top Brands Section */
+
 .top-brands {
     background: var(--secondary-bg);
     padding: 60px 0;
@@ -3772,34 +3796,38 @@ font-size:14px;
     }
 }
 
-/* Mobile Theme Toggle Visibility Fix */
-@media (max-width: 768px) {
-    .theme-toggle {
-        position: fixed !important;
-        top: 20px !important;
-        right: 20px !important;
-        z-index: 99999 !important;
-        background: var(--accent-blue) !important;
-        color: white !important;
-        width: 50px !important;
-        height: 50px !important;
-        border-radius: 50% !important;
-        display: flex !important;
-        visibility: visible !important;
-        opacity: 1 !important;
-        align-items: center !important;
-        justify-content: center !important;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.4) !important;
-        border: 2px solid white !important;
-        backdrop-filter: blur(10px) !important;
-    }
+#preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: var(--primary-bg);
+    z-index: 999999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.5s ease-out, visibility 0.5s ease-out;
+}
 
-    .theme-toggle i {
-        display: block !important;
-        font-size: 1.4rem !important;
-    }
+.loader-logo img {
+    width: 80px;
+    height: auto;
+    animation: pulseFavicon 1s infinite alternate ease-in-out;
+}
 
-    [data-theme="dark"] .theme-toggle {
-        background: var(--accent-orange) !important;
+@keyframes pulseFavicon {
+    0% {
+        transform: scale(0.8);
+        opacity: 0.5;
     }
+    100% {
+        transform: scale(1.1);
+        opacity: 1;
+    }
+}
+
+body.loaded #preloader {
+    opacity: 0;
+    visibility: hidden;
 }

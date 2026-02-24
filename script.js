@@ -1,25 +1,27 @@
-// Initialize Lenis Smooth Scroll
 const lenis = new Lenis();
 
-// Connect Lenis to ScrollTrigger
 lenis.on('scroll', ScrollTrigger.update);
 
-// Use GSAP's ticker to drive Lenis
 gsap.ticker.add((time) => {
   lenis.raf(time * 1000);
 });
 
-// Disable lag smoothing in GSAP to prevent sync issues
 gsap.ticker.lagSmoothing(0);
 
-// Theme Management
+window.addEventListener("load", () => {
+    
+    setTimeout(() => {
+        document.body.classList.add("loaded");
+    }, 1200); 
+});
+
 const initTheme = () => {
     const themeToggle = document.getElementById("themeToggle");
     const storedTheme = localStorage.getItem("stackly_theme");
     const systemTheme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
     const currentTheme = storedTheme || systemTheme;
 
-    // Apply theme
+    
     document.documentElement.setAttribute("data-theme", currentTheme);
     updateToggleIcon(currentTheme);
 
@@ -46,21 +48,16 @@ const updateToggleIcon = (theme) => {
     }
 };
 
-// GSAP Animations and Interactive Logic
+
 document.addEventListener("DOMContentLoaded", () => {
     initTheme();
-    // Initial Page Fade In
-    gsap.to(".gsap-reveal-page", {
-        opacity: 1,
-        duration: 1,
-        ease: "power2.out"
-    });
 
-    // Register ScrollTrigger plugin
+
+    
     if (typeof ScrollTrigger !== "undefined") {
         gsap.registerPlugin(ScrollTrigger);
 
-        // Generic section reveal
+        
         const revealSections = document.querySelectorAll('.loved-section, .rising-section, .gsap-reveal-section, .service-section, .service-cta');
         revealSections.forEach(section => {
             gsap.to(section, {
@@ -76,7 +73,7 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         });
 
-        // Robust Footer Reveal
+        
         gsap.set(".footer", { opacity: 0, y: 30 });
         gsap.to(".footer", {
             scrollTrigger: {
@@ -90,7 +87,7 @@ document.addEventListener("DOMContentLoaded", () => {
             ease: "power2.out"
         });
 
-        // Custom Staggered categories
+        
         const categories = document.querySelectorAll('.category');
         if (categories.length > 0) {
             gsap.set(categories, { opacity: 0, y: 20 });
@@ -108,8 +105,8 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         }
 
-        // Custom Staggered product cards (Main Page Only)
-        // We skip this on Shop Page as it has its own entry animation logic
+        
+        
         if (!document.querySelector('.shop-grid')) {
             const productCards = document.querySelectorAll('.product-card');
             if (productCards.length > 0) {
@@ -130,7 +127,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         }
 
-        // Staggered reveal for Grand Global Brands
+        
         const brandCards = document.querySelectorAll('.brand-card');
         if (brandCards.length > 0) {
             gsap.set(brandCards, { opacity: 0, y: 30 });
@@ -148,13 +145,13 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         }
 
-        // Refresh ScrollTrigger after a short delay
+        
         setTimeout(() => {
             ScrollTrigger.refresh();
         }, 500);
     }
 
-    // Chatbot Logic
+    
     const chatToggle = document.getElementById("chatToggle");
     const chatWindow = document.getElementById("chatWindow");
     const closeChat = document.getElementById("closeChat");
@@ -205,7 +202,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    // Product Modal (Quick View) Logic
+    
     const productModal = document.getElementById("productModal");
     const closeModal = document.getElementById("closeModal");
     const modalImg = document.getElementById("modalImg");
@@ -234,7 +231,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // Redirect "Buy Now" button to 404 page
+    
     const modalBuyBtn = productModal ? productModal.querySelector(".buy-now-btn") : null;
     if (modalBuyBtn) {
         modalBuyBtn.addEventListener("click", () => {
@@ -248,7 +245,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // Search and Suggestions Logic
+    
     const searchInput = document.getElementById("searchInput");
     const productCards = document.querySelectorAll(".product-card");
     const noResults = document.getElementById("noResults");
@@ -323,7 +320,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    // Mobile Menu Toggle
+    
     const mobileMenuBtn = document.getElementById("mobileMenuBtn");
     const navLinks = document.querySelector(".nav-links");
 
@@ -357,7 +354,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // Hero carousel Slider Logic
+    
     const slides = document.querySelectorAll(".slide");
     const dots = document.querySelectorAll(".dot");
     let sliderIndex = 0;
@@ -387,7 +384,7 @@ document.addEventListener("DOMContentLoaded", () => {
         setInterval(nextSlide, 4000);
     }
 
-    // Rising Stars Slider Logic
+    
     const track = document.getElementById("risingTrack");
     const risingDots = document.querySelectorAll("#risingDots span");
     let risingIndex = 0;
@@ -418,7 +415,7 @@ document.addEventListener("DOMContentLoaded", () => {
     window.addEventListener('resize', updateSlider);
     updateSlider();
 
-    // Shop Page Filtering Logic
+    
     const shopGrid = document.querySelector(".shop-grid");
     if (shopGrid) {
         const filterBtns = document.querySelectorAll(".filter-btn");
@@ -457,7 +454,7 @@ document.addEventListener("DOMContentLoaded", () => {
             filterBtns.forEach(btn => btn.addEventListener("click", filterProducts));
         }
 
-        // Shop Grid Entry Animation
+        
         const shopSidebar = document.querySelector(".shop-sidebar");
         if (shopSidebar) {
             gsap.from(shopSidebar, {
@@ -474,7 +471,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const shopCardsFinal = document.querySelectorAll(".shop-grid .product-card");
         if (shopCardsFinal.length > 0) {
-            // Use a simple staggered animation for initial cards if they are in viewport
+            
             gsap.from(shopCardsFinal, {
                 y: 30,
                 opacity: 0,
@@ -484,24 +481,24 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         }
 
-        // Initialize Filter logic (Run once to set initial state)
+        
         if (typeof filterProducts === "function") {
             filterProducts();
         }
     }
 
-    // Refresh ScrollTrigger after Shop logic is set
+    
     setTimeout(() => {
         if (typeof ScrollTrigger !== "undefined") {
             ScrollTrigger.refresh();
         }
     }, 1000);
 
-    // Initial Cart Setup
+    
     updateCartCount();
     setupPagination();
 
-    // Flash Sale Countdown Timer
+    
     const startFlashSaleCountdown = () => {
         const hEl = document.getElementById("hours");
         const mEl = document.getElementById("minutes");
@@ -536,7 +533,7 @@ document.addEventListener("DOMContentLoaded", () => {
     startFlashSaleCountdown();
 });
 
-// --- Cart Logic ---
+
 let cart = JSON.parse(localStorage.getItem('stackly_cart')) || [];
 
 function updateQty(btn, delta) {
@@ -557,7 +554,7 @@ function addToCartFromCard(btn) {
 
     addToCart({ id, name, price, category, img, quantity });
     
-    // Visual Feedback
+    
     const originalText = btn.innerHTML;
     btn.innerHTML = '<i class="fa-solid fa-check"></i> Added!';
     btn.style.backgroundColor = '#4CAF50';
@@ -591,7 +588,7 @@ function updateCartCount() {
     });
 }
 
-// --- Pagination Logic ---
+
 function setupPagination() {
     const pagination = document.querySelector('.pagination');
     if (!pagination) return;
@@ -604,17 +601,17 @@ function setupPagination() {
         currentPage = pageNumber;
         const products = document.querySelectorAll('.product-card');
         
-        // Hide all products first
+        
         products.forEach(p => p.style.display = 'none');
 
-        // Show products for current page
+        
         const pageProducts = document.querySelectorAll(`.product-card[data-page="${pageNumber}"]`);
         pageProducts.forEach(p => {
             p.style.display = 'block';
             gsap.fromTo(p, { opacity: 0, y: 15 }, { opacity: 1, y: 0, duration: 0.4 });
         });
 
-        // Update active button
+        
         pageBtns.forEach((btn, idx) => {
             if (parseInt(btn.innerText) === pageNumber) {
                 btn.classList.add('active');
@@ -623,13 +620,13 @@ function setupPagination() {
             }
         });
 
-        // Scroll to top of shop section
+        
         window.scrollTo({
             top: document.querySelector('.shop-layout').offsetTop - 150,
             behavior: 'smooth'
         });
         
-        // Update results count
+        
         const resultsCountSpan = document.getElementById("resultsCount");
         if (resultsCountSpan) resultsCountSpan.innerText = pageProducts.length;
     };
@@ -646,11 +643,11 @@ function setupPagination() {
             if (currentPage < pageBtns.length) {
                 showPage(currentPage + 1);
             } else {
-                showPage(1); // Loop back or stop
+                showPage(1); 
             }
         });
     }
 
-    // Initialize Page 1
+    
     showPage(1);
 }
