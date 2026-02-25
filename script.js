@@ -58,7 +58,7 @@ document.addEventListener("DOMContentLoaded", () => {
         gsap.registerPlugin(ScrollTrigger);
 
         
-        const revealSections = document.querySelectorAll('.loved-section, .rising-section, .gsap-reveal-section, .service-section, .service-cta');
+        const revealSections = document.querySelectorAll('.premium-banner, .infinite-scroll-section, .loved-section, .rising-section, .gsap-reveal-section, .service-section, .service-cta');
         revealSections.forEach(section => {
             gsap.to(section, {
                 scrollTrigger: {
