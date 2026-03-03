@@ -549,64 +549,66 @@
       <h1>Create account</h1>
       <div class="signup-sub">Join 10M+ shoppers — get tailored deals & loved suggestions</div>
 
-      <div class="name-row">
-        <div class="input-group">
-          <label>First name</label>
-          <input type="text" placeholder="John" id="firstName">
-        </div>
-        <div class="input-group">
-          <label>Last name</label>
-          <input type="text" placeholder="Doe" id="lastName">
-        </div>
-      </div>
-
-      <div class="double-field">
-        <div class="input-group">
-          <label>Email address</label>
-          <input type="email" placeholder="john@example.com" id="email">
-        </div>
-        <div class="input-group">
-          <label>Mobile number</label>
-          <input type="tel" placeholder="98765 43210" id="phone">
-        </div>
-      </div>
-
-      <div class="input-group" id="password-group">
-        <label>Password</label>
-        <input type="text" id="passwordInput" placeholder="Create a strong password" autocomplete="off">
-
-        <div class="strength-wrapper">
-          <div class="strength-bar" id="strengthBar">
-            <div class="strength-segment" id="seg1"></div>
-            <div class="strength-segment" id="seg2"></div>
-            <div class="strength-segment" id="seg3"></div>
-            <div class="strength-segment" id="seg4"></div>
+      <form id="signupForm">
+        <div class="name-row">
+          <div class="input-group">
+            <label>First name</label>
+            <input type="text" placeholder="John" id="firstName" required>
           </div>
-          <div class="strength-text">
-            <span class="strength-label">Password strength</span>
-            <span class="strength-value" id="strengthLabel">Strong</span>
-          </div>
-          <div class="password-hint">
-            <span id="hintLower" class="invalid">⬤ lowercase</span>
-            <span id="hintUpper" class="invalid">⬤ uppercase</span>
-            <span id="hintNumber" class="invalid">⬤ number</span>
-            <span id="hintLength" class="invalid">⬤ 8+ chars</span>
+          <div class="input-group">
+            <label>Last name</label>
+            <input type="text" placeholder="Doe" id="lastName" required>
           </div>
         </div>
-      </div>
 
-      <div class="input-group">
-        <label>Confirm password</label>
-        <input type="text" placeholder="Re-enter password" id="confirmPwd">
-      </div>
+        <div class="double-field">
+          <div class="input-group">
+            <label>Email address</label>
+            <input type="email" placeholder="john@example.com" id="email" required>
+          </div>
+          <div class="input-group">
+            <label>Mobile number</label>
+            <input type="tel" placeholder="98765 43210" id="phone" required>
+          </div>
+        </div>
 
-      <div class="terms">
-        <input type="checkbox" id="termsCheck" checked>
-        <label for="termsCheck">I agree to Stackly's <a href="shop.html">Terms of Use</a> and <a href="shop.html">Privacy
-            Policy</a>.</label>
-      </div>
+        <div class="input-group" id="password-group">
+          <label>Password</label>
+          <input type="password" id="passwordInput" placeholder="Create a strong password" autocomplete="off" required>
 
-      <a href="404.html"><button class="btn-signup">Sign up & get ₹200 off</button></a>
+          <div class="strength-wrapper">
+            <div class="strength-bar" id="strengthBar">
+              <div class="strength-segment" id="seg1"></div>
+              <div class="strength-segment" id="seg2"></div>
+              <div class="strength-segment" id="seg3"></div>
+              <div class="strength-segment" id="seg4"></div>
+            </div>
+            <div class="strength-text">
+              <span class="strength-label">Password strength</span>
+              <span class="strength-value" id="strengthLabel">Strong</span>
+            </div>
+            <div class="password-hint">
+              <span id="hintLower" class="invalid">⬤ lowercase</span>
+              <span id="hintUpper" class="invalid">⬤ uppercase</span>
+              <span id="hintNumber" class="invalid">⬤ number</span>
+              <span id="hintLength" class="invalid">⬤ 8+ chars</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label>Confirm password</label>
+          <input type="password" placeholder="Re-enter password" id="confirmPwd" required>
+        </div>
+
+        <div class="terms">
+          <input type="checkbox" id="termsCheck" required>
+          <label for="termsCheck">I agree to Stackly's <a href="shop.html">Terms of Use</a> and <a href="shop.html">Privacy
+              Policy</a>.</label>
+        </div>
+
+        <button type="submit" class="btn-signup">Sign up & get ₹200 off</button>
+      </form>
 
       <div class="or-line"><span>OR</span></div>
       <div class="social-row">
@@ -742,6 +744,20 @@
       updateStrengthMeter();
 
       pwdInput.addEventListener('input', updateStrengthMeter);
+
+      document.getElementById('signupForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const pwd = document.getElementById('passwordInput').value;
+        const confirmPwd = document.getElementById('confirmPwd').value;
+
+        if (pwd !== confirmPwd) {
+          alert('Passwords do not match! Please check again.');
+          return;
+        }
+
+        alert('Account created successfully! Welcome to Stackly.');
+        window.location.href = 'login.html';
+      });
     })();
   </script>
 

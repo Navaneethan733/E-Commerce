@@ -430,20 +430,22 @@
       <h1>Welcome back</h1>
       <div class="login-sub">Log in to get your Stackly deals & loved suggestions</div>
 
-      <div class="input-group">
-        <label>Email or mobile number</label>
-        <input type="text" placeholder="e.g., john@example.com">
-      </div>
-
-      <div class="input-group">
-        <label>Password</label>
-        <input type="password" placeholder="········">
-        <div class="forgot-link">
-          <a href="./forget.html">Forgot?</a>
+      <form id="loginForm">
+        <div class="input-group">
+          <label>Email or mobile number</label>
+          <input type="text" placeholder="e.g., john@example.com" required>
         </div>
-      </div>
 
-      <button class="btn-login">Login to Stackly</button>
+        <div class="input-group">
+          <label>Password</label>
+          <input type="password" placeholder="········" required>
+          <div class="forgot-link">
+            <a href="./forget.html">Forgot?</a>
+          </div>
+        </div>
+
+        <button type="submit" class="btn-login">Login to Stackly</button>
+      </form>
 
       <div class="or-line">
         <span>OR</span>
@@ -509,6 +511,11 @@
     <script src="https://unpkg.com/lenis@1.1.20/dist/lenis.min.js"></script>
     <script src="script.js"></script>
   <script>
+    document.getElementById('loginForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert('Login successful! Welcome to Stackly.');
+      window.location.href = 'dashboard.html';
+    });
     console.log('Stackly login page — consistent with main design');
   </script>
 
